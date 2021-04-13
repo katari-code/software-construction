@@ -1,5 +1,6 @@
 package Version2;
 import java.util.*;
+
 public class Order implements ViewTotalNo{
     Vector<Product> orderItems;
     Customer C;
@@ -7,17 +8,13 @@ public class Order implements ViewTotalNo{
     private Date dateCreated;
     private int orderId;
     private double orderPrice;
-    //constructors
-    public  Order(){
 
-    }
-    public Order(int orderId){
+    Order(int orderId){
         orderItems =new Vector<Product>();
         C= new Customer();
         S=new Seller();
         this.orderId=orderId;
     }
-    //accessors
     public int getOrderId() {
         return orderId;
     }
@@ -25,23 +22,6 @@ public class Order implements ViewTotalNo{
     public Date getDateCreated() {
         return dateCreated;
     }
-
-    public double getOrderPrice() {
-        return orderPrice;
-    }
-
-    public Seller getS() {
-        return S;
-    }
-
-    public Customer getC() {
-        return C;
-    }
-
-    public Vector<Product> getOrderItems() {
-        return orderItems;
-    }
-    //mutators
 
     public void setCart(Vector<Product> orderItems) {
         this.orderItems = orderItems;
@@ -56,12 +36,14 @@ public class Order implements ViewTotalNo{
     }
 
     public double calcPrice(){
+        assert orderItems.size()>0:"There are no items added to the order";
         orderPrice=0;
         for (int i=0;i<orderItems.size();i++){
             orderPrice+=orderItems.elementAt(i).getProductCost();
         }
         return orderPrice;
     }
+
     public void getTotalItemsNo() {
         System.out.println("Number of products in the Order: " + orderItems.size());
 
@@ -90,3 +72,4 @@ public class Order implements ViewTotalNo{
     }
 
 }
+

@@ -1,34 +1,26 @@
 package Version2;
+
 public class Product {
     private int productId;
     private String productName;
     private int quantity;
     private double productCost;
-    //constructors
+
     public Product(int productId,String productName,double productCost)
     {
+        // INVARIANT
+        assert this.quantity >= 0 :"Quantity can't be negative";
+        assert this.productCost >0 :"Product cost must be more than 0!";
+
         this.productId=productId;
         this.productName=productName;
         this.productCost=productCost;
+
     }
-    //mutators
+
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
-    public void setProductCost(double productCost) {
-        this.productCost = productCost;
-    }
-
-    //accessors
 
     public int getProductId(){return productId;}
     public String getProductName(){return productName;}
@@ -41,3 +33,4 @@ public class Product {
         System.out.println("Price: " + productCost);
     }
 }
+

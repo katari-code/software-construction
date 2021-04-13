@@ -3,8 +3,8 @@ import java.util.Vector;
 
 public class Seller extends User implements ViewTotalNo {
     private int productsNum; //number of products seller added
-     Vector<Product> myProducts;
-    //constructors
+    Vector<Product> myProducts;
+
     Seller(){
 
     }
@@ -15,26 +15,10 @@ public class Seller extends User implements ViewTotalNo {
         myProducts = new Vector<Product>();
         productsNum=myProducts.size();
     }
-    //accessors
+
     public int getProductsNum() {
         return productsNum;
     }
-
-    public Vector<Product> getMyProducts() {
-        return myProducts;
-    }
-
-    //mutators
-
-
-    public void setProductsNum(int productsNum) {
-        this.productsNum = productsNum;
-    }
-
-    public void setMyProducts(Vector<Product> myProducts) {
-        this.myProducts = myProducts;
-    }
-
 
     @Override
     public void addProduct(Product p) {
@@ -42,10 +26,12 @@ public class Seller extends User implements ViewTotalNo {
     }
 
     public void  removeProduct(Product p){
+        assert myProducts.contains(p) : "The product doesn't exist in your list";
         myProducts.remove(p);
     }
 
     public void updateQuantity(Product p, int q){
+
         p.setQuantity(q);
     }
 
@@ -59,8 +45,10 @@ public class Seller extends User implements ViewTotalNo {
 
     @Override
     public void getTotalItemsNo() {
+        assert  myProducts != null : "There is no products list";
         productsNum=myProducts.size();
         System.out.println("Number of products: " + productsNum);
 
     }
 }
+

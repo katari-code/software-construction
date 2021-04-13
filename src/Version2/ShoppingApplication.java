@@ -1,5 +1,6 @@
 package Version2;
-public class OrderingApplication {
+
+public class ShoppingApplication {
     public static void main(String[] args) {
 
         //Products
@@ -57,6 +58,8 @@ public class OrderingApplication {
         girl.addProduct(shampoo);
         girl.addProduct(bodyWash);
         girl.addProduct(faceWash);
+        girl.addProduct(faceWash);
+        girl.addProduct(faceWash);
 
         girl.removeProduct(shampoo);
 
@@ -76,3 +79,4 @@ public class OrderingApplication {
         girlOrder.printOrder();
     }
 }
+

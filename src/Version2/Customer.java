@@ -1,16 +1,26 @@
 package Version2;
 import java.util.Vector;
+
 public class Customer extends User {
     private Seller S;
     private Address address;
     private double accountBalance;
     private Vector<Product> cart;
-    //constructors
-    public Customer(){
 
+
+    public Customer(){
+        // INVARIANT
+        assert this.accountBalance >= 0 : "Account Balance Can not be negative";
     }
+
+
     public Customer(int userId, String name, double accountBalance){
+
         super(userId,name);
+
+        // INVARIANT
+        assert this.accountBalance > 0 : "Account Balance Can not be negative";
+
         this.accountBalance=accountBalance;
         super.accountType="Customer";
         address=new Address();
@@ -18,11 +28,13 @@ public class Customer extends User {
         cart= new Vector<Product>();
     }
 
-    //mutators
-    public void setCart(Vector<Product> cart) {
-        this.cart = cart;
+    public double getAccountBalance() {
+        return accountBalance;
     }
 
+    public Vector<Product> getCart() {
+        return cart;
+    }
 
     public void setAddress(Address address) {
         this.address = address;
@@ -32,32 +44,13 @@ public class Customer extends User {
         S = s;
     }
 
-    public void setAccountBalance(double accountBalance) {
-        this.accountBalance = accountBalance;
-    }
-
-    //accessors
-
-    public Address getAddress() {
-        return address;
-    }
-
     public Seller getSeller() {
         return S;
     }
 
-    //accessors
-    public Vector<Product> getCart() {
-        return cart;
-    }
-    public double getAccountBalance() {
-        return accountBalance;
-    }
-
-    //methods
     @Override
     public void addProduct(Product p) {
-
+        assert accountBalance>p.getProductCost() : "no balance";
         if(accountBalance<p.getProductCost() && S.myProducts.contains(p)){
             System.out.println("You (" + name + ") Have insufficient balance to add product: "+p.getProductName());
         }
@@ -79,6 +72,7 @@ public class Customer extends User {
 
     @Override
     public void removeProduct(Product p) {
+//        assert cart.contains(p);
         if(cart.contains(p)){
             cart.remove(p);
             accountBalance+=p.getProductCost();
@@ -101,3 +95,4 @@ public class Customer extends User {
 
 
 }
+
